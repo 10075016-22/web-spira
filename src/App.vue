@@ -1,23 +1,23 @@
 <template>
   <v-app>
-    <v-main>
-      <HelloWorld/>
+    <v-main v-if="!hasAuthenticated" class="bg-grey">
+      <Login class="mt-10"/>
+    </v-main>
+    <v-main v-else>
+      <Menu />
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { storeToRefs } from "pinia";
+import Login from "@/views/login/Login.vue";
+import Menu from '@/components/menu/Menu.vue'
+import { UsuarioStore } from "@/store/auth/str_Usuario.js";
+const { hasAuthenticated } =  storeToRefs(UsuarioStore())
 
-export default {
-  name: 'App',
 
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-}
 </script>
