@@ -2,11 +2,11 @@
   <v-row justify="center">
     <v-col v-if="!bFormulario">
       <Grid :nIdTabla="4" endpoint="roles" >
-        <template v-slot:btn_personalizados>
+        <!-- <template v-slot:btn_personalizados>
           <v-btn elevation="0" color="#1565C0" class="text-white" @click="bFormulario = true">
             Agregar
           </v-btn>
-        </template>
+        </template> -->
       </Grid>
     </v-col>
     <v-col v-else lg="6" md="6" sm="12" xl="6" class="mt-10">

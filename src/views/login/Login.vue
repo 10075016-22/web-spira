@@ -23,6 +23,7 @@
                 label="Contraseña" 
                 v-bind="properties" 
                 v-model="oForm.sPassword"
+                type="password"
                 placeholder="Digite su contraseña" 
                 :rules="[v => (!!v || v !== '') || 'Campo obligatorio']"
                 clearable

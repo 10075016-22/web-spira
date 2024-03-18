@@ -1,7 +1,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
-
+import { UsuarioStore } from '@/store/auth/str_Usuario.js'
 export function Menu(props) {
 
   const bLoading = ref(false);
@@ -11,6 +11,9 @@ export function Menu(props) {
 
   onMounted(() => __getModulos());
 
+  const {
+    oUsuario
+  } = UsuarioStore()
 
   const __onItem = (item) => {
     if( route.name !== item.name) router.replace({ name: item.name })
@@ -30,10 +33,15 @@ export function Menu(props) {
   const __getModulos = async () => {
     bLoading.value = true
     try {
+      const { roles } = oUsuario;
+      
       const { data } = await axios.get('/modules')
-      aMenu.value = data;
+      aMenu.value = data?.filter((modulo) => roles[0].permissions.some(permiso => permiso.name === modulo.name));
+      console.log(aMenu.value);
+      
       bLoading.value = false;
     } catch (error) {
+      console.log({error: error});
       bLoading.value = false;
     }
   }
