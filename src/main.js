@@ -5,6 +5,12 @@ import { loadFonts } from './plugins/webfontloader'
 
 import 'devextreme/dist/css/dx.light.css';
 
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+
+
+
 // router
 import router from './router'
 
@@ -65,6 +71,7 @@ const app = createApp(App, {
 loadFonts()
 
 app
+  .use(VueSweetalert2)
   .use(pinia)
   .use(router)
   .use(vuetify)
