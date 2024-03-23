@@ -37,11 +37,9 @@ export function Menu(props) {
       
       const { data } = await axios.get('/modules')
       aMenu.value = data?.filter((modulo) => roles[0].permissions.some(permiso => permiso.name === modulo.name));
-      console.log(aMenu.value);
       
       bLoading.value = false;
     } catch (error) {
-      console.log({error: error});
       bLoading.value = false;
     }
   }

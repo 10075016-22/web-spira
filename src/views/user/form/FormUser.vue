@@ -90,16 +90,6 @@ const oFormulario = ref({
 
 onMounted(() => getPerfiles())
 
-const onCleanFormulario = () => {
-    oFormulario.value = {
-        name: '',
-        email: '',
-        password: '',
-        phone: '',
-        perfil: ''
-    }
-}
-
 const getPerfiles = async () => {
     try {
         const { data } = await axios.get('getRoles')
@@ -116,7 +106,7 @@ const onGuardar = async () => {
     if(valid) {
         const { data } = await axios.post(`users`, oFormulario.value);
         swal.fire({title: 'Información', text: data.message, icon: 'success'})
-        emit('onBack')
+        form.value?.reset()
     } else {
         swal.fire({title: 'Información', text: 'Diligencie toda la información', icon: 'warning'})
     }

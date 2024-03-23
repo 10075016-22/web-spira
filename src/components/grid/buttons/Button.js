@@ -28,17 +28,25 @@ export function Button(props, emit) {
                 break;
               case 210:
                 swal.fire({ title: data.message, icon: "info" });
+                setTimeout(() => bLoading.value = false, 1500)
                 break;
             }
+          } else {
+            setTimeout(() => bLoading.value = false, 1500)
           }
         });
     } catch (error) {
       bLoading.value = false;
     }
   };
+
+  const onEditar = async () => {
+    emit("onBack", { item: props.item, row: props.row });
+  }
   return {
     bLoading,
 
     onEliminar,
+    onEditar
   };
 }

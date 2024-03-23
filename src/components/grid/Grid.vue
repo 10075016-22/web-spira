@@ -34,13 +34,13 @@
           :type="column.type"
           :alignment="column?.alignment"
           :format="column?.format"
-          :groupIndex="column?.groupIndex"
+          :groupIndex="parseInt(column?.groupIndex)"
           :sortIndex="column?.sortIndex"
           :fixed="column?.fixed == 1"
           :width="column?.width"
         />
 
-        <DxColumn width="200" cell-template="actionTemplate" v-if="options?.length > 0" />
+        <DxColumn caption="Acciones" alignment="center" width="200" cell-template="actionTemplate" v-if="options?.length > 0" />
         <template #actionTemplate="{ data: cellData }">
           <div class="text-center">
             <component
@@ -76,6 +76,7 @@ const props = defineProps({
   nIdTabla: Number,
   endpoint: String
 });
+const emit = defineEmits(['edit'])
 
 const bLoading = ref(false);
 const columns = ref([]);
@@ -101,6 +102,9 @@ const onBack = (info) => {
   switch(item?.component?.component) {
     case 'ButtonDelete': 
       onGetData()
+      break;
+    case 'ButtonEdit':
+      emit('edit', info)
       break;
   }
 }

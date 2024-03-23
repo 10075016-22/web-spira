@@ -9,6 +9,7 @@
 </template>
 <script setup>
 
+const emit = defineEmits(['onBack'])
 const props = defineProps({
   row: Object,
   item: Object,
