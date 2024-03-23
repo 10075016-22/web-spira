@@ -8,7 +8,6 @@
       </v-btn>
     </v-toolbar>
     <v-card-text>
-      {{ oItem }}
       <v-form ref="form">
         <v-text-field
           v-model="oFormulario.name"
